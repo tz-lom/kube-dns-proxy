@@ -11,6 +11,7 @@ To do that, you must change the IP address of the service, take a note that K8S 
 Default IP of the kubernetes dns server is 10.96.0.10, we will change it to 10.96.0.11
 Create file
   - kube-dns-service.yaml
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -44,6 +45,7 @@ kubeclt create -f kube-dns-service.yaml
 ```
 Now  deploy pdnsd to all nodes of your cluster:
   - pdnsd-mirror.yaml
+
 ```yaml
 apiVersion: extensions/v1beta1
 kind: DaemonSet
