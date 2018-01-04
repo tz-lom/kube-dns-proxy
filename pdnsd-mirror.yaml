@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: pdnsd
+  namespace: kube-system
+  labels:
+    app: pdnsd
+spec:
+  selector:
+    matchLabels:
+      app: pdnsd
+  template:
+    metadata:
+      labels:
+        app: pdnsd
+    spec:
+      hostNetwork: true
+      containers:
+        - name: pdnsd
+          image: tzlom/kube-dns-proxy:2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 53
+              name: dns
+              protocol: UDP
+              hostPort: 53
+            - containerPort: 53
+              name: dns-tcp
+              protocol: TCP
+              hostPort: 53
+        - name: install
+          image: tzlom/kube-dns-proxy-install:1
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN", "NET_RAW"]
+            
