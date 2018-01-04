@@ -28,6 +28,7 @@ spec:
               name: dns-tcp
               protocol: TCP
               hostPort: 53
+      initContainers:
         - name: install
           image: tzlom/kube-dns-proxy-install:3
           imagePullPolicy: IfNotPresent
