@@ -17,7 +17,7 @@ spec:
       hostNetwork: true
       containers:
         - name: pdnsd
-          image: tzlom/kube-dns-proxy:2
+          image: tzlom/kube-dns-proxy:3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 53
@@ -29,7 +29,7 @@ spec:
               protocol: TCP
               hostPort: 53
         - name: install
-          image: tzlom/kube-dns-proxy-install:1
+          image: tzlom/kube-dns-proxy-install:3
           imagePullPolicy: IfNotPresent
           securityContext:
             capabilities:
